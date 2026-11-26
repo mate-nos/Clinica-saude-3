@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinica 3 - Painel de Saúde</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Clinica 3 - Cadastro de Pacientes</h1>
+
+    <form id="form-paciente">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required>
+
+        <label for="tipo">Tipo de Atendimento:</label>
+        <select id="tipo" required>
+            <option value="" disabled selected>Selecione o atendimento</option>
+            <option value="Particular">Particular</option>
+            <option value="Convenio">Convênio</option>
+        </select>
+
+        <div class="abrakadabra">
+            <label for="carteirinha">Número da Carteirinha:</label>
+            <input type="text" id="carteirinha" placeholder="Digite o número da carteirinha" disabled>
+        </div>
+
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" placeholder="01001-000" maxlength="9" pattern="[0-9]{5}-?[0-9]{3}" required>
+
+        <label for="cidade">Cidade/UF:</label>
+        <input type="text" id="cidade" readonly required placeholder="Preenchido automaticamente via CEP">
+
+        <label for="altura">Altura (m):</label>
+        <input type="number" id="altura" step="0.01" min="0.01" required>
+
+        <label for="peso">Peso (kg):</label>
+        <input type="number" id="peso" step="0.1" min="0.1" required>
+
+        <button type="submit">Cadastrar Paciente</button>
+    </form>
+
+    <h2>Relatório de Pacientes Cadastrados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Tipo de Paciente</th>
+                <th>Cidade/UF</th>
+                <th>Altura</th>
+                <th>Peso</th>
+                <th>IMC</th>
+                <th>Classificação de Saúde</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-body">
+        </tbody>
+    </table>
+
+    <hr><br><br>
+
+    <h2>Painel do Desenvolvedor: Explicando o JSON</h2>
+    <section id="painel">        
+	    <div class="card">
+		    <h3>1. O que é JSON?</h3>
+		    <p>JSON (JavaScript Object Notation) é um padrão de troca de dados baseado na notação de objetos da linguagem Javascript. É um formato usado para a representação de dados estruturados, visando uma linguagem comum para diversas linguagens de programação pelos mais diversos protocolos (como o HTTP). Ele retorna valores especificamente em chave-valor, em que cada chave identifica uma informação e o valor armazena o dado correspondente. </p>
+	    </div>
+
+	    <div class="card">
+		    <h3>2. Como a requisição funciona no navegador?</h3>
+		    <p>A requisição neste contexto funciona por meio da chamada da função fetch(), que realiza uma requisição http para servidores externos (como a API ViaCEP). Essa requisição funciona de maneira assincrona (ou seja, sem parar a execução do restante do app nem recarregar o restante da página).</p>
+	    </div>
+
+	    <div class="card">
+		    <h3>3. Como o JavaScript utiliza a resposta?</h3>
+		    <p>Neste contexto, fazemos o uso do javascript para modificar nossos campos e verificar, dentro do código, a validade do CEP. Fazemos isso por meio do método .json(), que transforma a resposta recebida da API em notação JSON em um objeto javascript,  de modo a permitir o acesso aos atributos especificados pela repsosta fornecida.</p>
+	    </div>
+    </section>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
